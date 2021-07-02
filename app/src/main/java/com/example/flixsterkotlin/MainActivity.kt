@@ -32,12 +32,8 @@ class MainActivity : AppCompatActivity() {
                 Log.e(TAG, "onFailure $statusCode")
             }
 
-            override fun onSuccess(statusCode: Int, headers: Headers?, responseJson: JSON?) {
+            override fun onSuccess(statusCode: Int, headers: Headers?, responseJson: JSON) {
                 Log.i(TAG, "onSuccess $responseJson")
-                if (responseJson == null) {
-                    Log.e(TAG, "Got unexpected null JSON response")
-                    return
-                }
                 try {
                     val movieJsonArray = responseJson.jsonObject.getJSONArray("results")
                     movies.addAll(Movie.fromJsonArray(movieJsonArray))

@@ -41,12 +41,8 @@ class DetailActivity : YouTubeBaseActivity() {
                 Log.e(TAG, "onFailure $statusCode")
             }
 
-            override fun onSuccess(statusCode: Int, headers: Headers?, json: JSON?) {
+            override fun onSuccess(statusCode: Int, headers: Headers?, json: JSON) {
                 Log.i(TAG, "onSuccess")
-                if (json == null) {
-                    Log.e(TAG, "Got unexpected null result")
-                    return
-                }
                 try {
                     val results = json.jsonObject.getJSONArray("results")
                     if (results.length() == 0) {
